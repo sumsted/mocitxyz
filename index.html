@@ -95,11 +95,8 @@
     <p id="features"></p>
     <div class="container px-4 py-5">
       <h1 class="pb-2 border-bottom">
-        Easily integrate Mocit into your application
-      </h1>
-      <h3>
         Make Mocit part of your development and test workflow.
-      </h3>
+      </h1>
       <div
         class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-2 py-2"
       >
@@ -130,8 +127,7 @@ Response:
         </div>
         <div class="col d-flex align-items-start">
           <div>
-            <pre class=""><code class="language-python">from pprint import pprint
-import requests
+            <pre class=""><code class="language-python">import requests
 
 HEADERS = {
   "X-RapidAPI-Key": "YOUR RAPID API KEY",
@@ -151,7 +147,6 @@ MOCK_RESPONSE = {
 }
 url = "https://mocit.p.rapidapi.com/v1/mocit"
 response = requests.post(url, headers=HEADERS, json=MOCK_RESPONSE)
-pprint(response.json())
 mock_path = response.json()['full_path']
 # mock_path = "https://mocit.p.rapidapi.com/v1/service/food/fruit"
 
