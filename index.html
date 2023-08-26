@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="static/styles/landing.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <!-- navigation -->
+    <nav
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark landing-bg-dark"
+      aria-label="Mocit"
+    >
+      <div class="container-xl">
+        <a class="navbar-brand" href="#">
+          <img src="static/images/default-monochrome.svg" width="110px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample07XL"
+          aria-controls="navbarsExample07XL"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample07XL">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <a class="nav-link active" href="#features">Features</a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="landing-sm-section-divider hero"></div>
+    <div class="hero" style="width: 100%">
+      <div class="container col-xxl-8 px-4 py-5 hero">
+        <div class="row align-items-center g-5 py-5  centered-col">
+          <div class="col-lg-6">
+            <img
+              src="static/images/default-monochrome.svg"
+              width="400"
+              style="display: block; margin: auto"
+            />
+            <div class="landing-sm-section-divider"></div>
+            <p class="lead" style="text-align: center">
+              Mocit is your ultimate solution for efficient API development.
+              Seamlessly simulate API behaviors and streamline
+              your development workflow with Mocit.
+            </p>
+            <div class="landing-sm-section-divider"></div>
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+              <a
+                href="https://rapidapi.com/scottu/api/mocit"
+                target="_blank"
+              >
+                <img
+                  src="https://storage.googleapis.com/rapidapi-documentation/connect-on-rapidapi-light.png"
+                  width="215"
+                  alt="Connect on RapidAPI"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <p id="features"></p>
+    <div class="container px-4 py-5">
+      <h1 class="pb-2 border-bottom">
+        Easily integrate Mocit into your application
+      </h1>
+      <h3>
+        Make Mocit part of your development and test workflow.
+      </h3>
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-2 py-2"
+      >
+        <div class="col d-flex align-items-start">
+          <div>
+            <h5>Step 1 - Register your endpoint</h5>
+            <p>Register your endpoint by posting to mocit. Mocit will return the path to call.</p>
+            <pre><code class="language-javascript">POST: https://mocit.p.rapidapi.com/v1/mocit
+Status: 200
+Response:
+{
+  "base_path": "https://mocit.p.rapidapi.com/v1/service",
+  "expiration": "2023-08-27 14:45:48 UTC",
+  "full_path": "https://mocit.p.rapidapi.com/v1/service/food/fruit",
+  "method": "GET",
+  "name": "Food Service",
+  "path": "/food/fruit"
+}</code></pre>
+            <h4>Step 2 - Call your new service</h4>
+            <p>Call your endpoint and process the response.</p>
+            <pre><code class="language-javascript">GET: https://mocit.p.rapidapi.com/v1/service/food/fruit
+Status: 200
+Response:
+{
+  "fruit":"grape"
+}</code></pre>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div>
+            <pre class=""><code class="language-python">from pprint import pprint
+import requests
+
+HEADERS = {
+  "X-RapidAPI-Key": "YOUR RAPID API KEY",
+  "X-RapidAPI-Host": "mocit.p.rapidapi.com"
+}
+
+# Step 1 - Register your mock service on mocit
+MOCK_RESPONSE = {
+    'name':'Food Service', 
+    'path':'/food/fruit',
+    'method':'get', 
+    'status_code':200, 
+    'delay':0,
+    'response_body':{
+        "fruit":"grape"
+    }
+}
+url = "https://mocit.p.rapidapi.com/v1/mocit"
+response = requests.post(url, headers=HEADERS, json=MOCK_RESPONSE)
+pprint(response.json())
+mock_path = response.json()['full_path']
+# mock_path = "https://mocit.p.rapidapi.com/v1/service/food/fruit"
+
+# Step 2 - Call your mock service and process the response
+response = requests.get(url=mock_path, headers=HEADERS, json={"testing":"fruit"})
+print("%d: %s"%(response.status_code, response.json()))</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container px-4 py-5">
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3  centered-col">
+        <div class="col-lg-2 justify-content-center">
+          <a
+            href="https://rapidapi.com/scottu/api/mocit"
+            target="_blank"
+          >
+            <img
+              src="https://storage.googleapis.com/rapidapi-documentation/connect-on-rapidapi-dark.png"
+              width="215"
+              alt="Connect on RapidAPI"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
+      >
+        <p class="col-md-4 mb-0 text-muted">&copy; 2023 Mocit</p>
+
+        <a
+          href="/"
+          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <svg class="bi me-2" width="40" height="32">
+            <use xlink:href="#bootstrap" />
+          </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+          <!-- <li class="nav-item">
+            <a href="#features" class="nav-link px-2 text-muted">Features</a>
+          </li> -->
+        </ul>
+      </footer>
+    </div>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
